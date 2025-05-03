@@ -1,0 +1,17 @@
+{
+  "name": "Weather Dashboard by AdityaKate",
+  "short_name": "Weather Dashboard",
+  "description": "Real-time weather dashboard with forecasts and visualizations",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0ea5e9",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

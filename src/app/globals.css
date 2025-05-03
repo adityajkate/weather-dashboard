@@ -1,0 +1,741 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Base colors */
+  --background: #f8fafc;
+  --foreground: #0f172a;
+
+  /* Card colors */
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --card-hover: #f1f5f9;
+
+  /* Primary colors - Deep blue to teal gradient */
+  --primary: #1E3A8A;
+  --primary-foreground: #f8fafc;
+  --primary-light: #BFDBFE;
+  --primary-dark: #1E40AF;
+  --primary-rgb: 30, 58, 138;
+
+  /* Secondary colors */
+  --secondary: #06B6D4;
+  --secondary-foreground: #f8fafc;
+  --secondary-light: #CFFAFE;
+  --secondary-dark: #0891B2;
+  --secondary-rgb: 6, 182, 212;
+
+  /* UI colors */
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --accent: #f1f5f9;
+  --accent-foreground: #0f172a;
+  --destructive: #ef4444;
+  --destructive-foreground: #f8fafc;
+  --destructive-light: #fee2e2;
+
+  /* Border and input colors */
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #1E3A8A;
+
+  /* Weather-specific colors */
+  --weather-sunny: #F97316;
+  --weather-sunny-light: #FBBF24;
+  --weather-sunny-dark: #EA580C;
+
+  --weather-rainy: #3B82F6;
+  --weather-rainy-light: #60A5FA;
+  --weather-rainy-dark: #1D4ED8;
+
+  --weather-cloudy: #9CA3AF;
+  --weather-cloudy-light: #D1D5DB;
+  --weather-cloudy-dark: #6B7280;
+
+  --weather-snowy: #E0F2FE;
+  --weather-snowy-light: #F0F9FF;
+  --weather-snowy-dark: #BAE6FD;
+
+  --weather-stormy: #4B5563;
+  --weather-stormy-light: #6B7280;
+  --weather-stormy-dark: #374151;
+
+  /* UI properties */
+  --radius: 0.75rem;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  /* Glassmorphism */
+  --glass-background: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-blur: 8px;
+}
+
+.dark {
+  /* Base colors */
+  --background: #111827;
+  --foreground: #f8fafc;
+
+  /* Card colors */
+  --card: #1e293b;
+  --card-foreground: #f8fafc;
+  --card-hover: #334155;
+
+  /* Primary colors - Deep blue to teal gradient */
+  --primary: #60A5FA;
+  --primary-foreground: #f8fafc;
+  --primary-light: #1E40AF;
+  --primary-dark: #BFDBFE;
+
+  /* Secondary colors */
+  --secondary: #06B6D4;
+  --secondary-foreground: #f8fafc;
+  --secondary-light: #0891B2;
+  --secondary-dark: #CFFAFE;
+
+  /* UI colors */
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --accent: #1e293b;
+  --accent-foreground: #f8fafc;
+  --destructive: #ef4444;
+  --destructive-foreground: #f8fafc;
+  --destructive-light: #7f1d1d;
+
+  /* Border and input colors */
+  --border: #334155;
+  --input: #334155;
+  --ring: #60A5FA;
+
+  /* Weather-specific colors */
+  --weather-sunny: #F97316;
+  --weather-sunny-light: #EA580C;
+  --weather-sunny-dark: #FBBF24;
+
+  --weather-rainy: #3B82F6;
+  --weather-rainy-light: #1D4ED8;
+  --weather-rainy-dark: #60A5FA;
+
+  --weather-cloudy: #6B7280;
+  --weather-cloudy-light: #4B5563;
+  --weather-cloudy-dark: #9CA3AF;
+
+  --weather-snowy: #BAE6FD;
+  --weather-snowy-light: #7DD3FC;
+  --weather-snowy-dark: #E0F2FE;
+
+  --weather-stormy: #374151;
+  --weather-stormy-light: #1F2937;
+  --weather-stormy-dark: #4B5563;
+
+  /* UI properties */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+  --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+  --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.3), 0 8px 10px -6px rgb(0 0 0 / 0.3);
+
+  /* Glassmorphism */
+  --glass-background: rgba(0, 0, 0, 0.2);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-blur: 8px;
+}
+
+/* Theme Neon - Light Mode */
+.light.theme-neon {
+  /* Base colors */
+  --background: #f0f0ff;
+  --foreground: #1a103c;
+
+  /* Card colors */
+  --card: #ffffff;
+  --card-foreground: #1a103c;
+  --card-hover: #f5f5ff;
+
+  /* Primary colors */
+  --primary: #7928ca;
+  --primary-foreground: #ffffff;
+  --primary-light: #d8b4fe;
+  --primary-dark: #6b21a8;
+  --primary-rgb: 121, 40, 202;
+
+  /* Secondary colors */
+  --secondary: #0ea5e9;
+  --secondary-foreground: #ffffff;
+  --secondary-light: #bae6fd;
+  --secondary-dark: #0284c7;
+  --secondary-rgb: 14, 165, 233;
+
+  /* UI colors */
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --accent: #f0abfc;
+  --accent-foreground: #701a75;
+  --destructive: #ff2d55;
+  --destructive-foreground: #ffffff;
+  --destructive-light: #ffe2e2;
+
+  /* Border and input colors */
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #7928ca;
+
+  /* Weather-specific colors */
+  --weather-sunny: #ff9500;
+  --weather-sunny-light: #ffcc00;
+  --weather-sunny-dark: #ff7b00;
+
+  --weather-rainy: #00b4d8;
+  --weather-rainy-light: #90e0ef;
+  --weather-rainy-dark: #0077b6;
+
+  --weather-cloudy: #8e9aaf;
+  --weather-cloudy-light: #cbc0d3;
+  --weather-cloudy-dark: #5c677d;
+
+  --weather-snowy: #caf0f8;
+  --weather-snowy-light: #f0f9ff;
+  --weather-snowy-dark: #90e0ef;
+
+  --weather-stormy: #4a4e69;
+  --weather-stormy-light: #9a8c98;
+  --weather-stormy-dark: #22223b;
+
+  /* Glassmorphism */
+  --glass-background: rgba(255, 255, 255, 0.15);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --glass-blur: 12px;
+}
+
+/* Theme Neon - Dark Mode */
+.dark.theme-neon {
+  /* Base colors */
+  --background: #0f0f1a;
+  --foreground: #f0f0ff;
+
+  /* Card colors */
+  --card: #1a1a2e;
+  --card-foreground: #f0f0ff;
+  --card-hover: #252547;
+
+  /* Primary colors */
+  --primary: #bf00ff;
+  --primary-foreground: #ffffff;
+  --primary-light: #6b21a8;
+  --primary-dark: #d8b4fe;
+  --primary-rgb: 191, 0, 255;
+
+  /* Secondary colors */
+  --secondary: #00ffff;
+  --secondary-foreground: #000000;
+  --secondary-light: #0284c7;
+  --secondary-dark: #bae6fd;
+  --secondary-rgb: 0, 255, 255;
+
+  /* UI colors */
+  --muted: #1e1e3f;
+  --muted-foreground: #a5b4fc;
+  --accent: #ff00ff;
+  --accent-foreground: #ffffff;
+  --destructive: #ff2d55;
+  --destructive-foreground: #ffffff;
+  --destructive-light: #7f1d1d;
+
+  /* Border and input colors */
+  --border: #2e2e5a;
+  --input: #2e2e5a;
+  --ring: #bf00ff;
+
+  /* Weather-specific colors */
+  --weather-sunny: #ff9500;
+  --weather-sunny-light: #ff7b00;
+  --weather-sunny-dark: #ffcc00;
+
+  --weather-rainy: #00b4d8;
+  --weather-rainy-light: #0077b6;
+  --weather-rainy-dark: #90e0ef;
+
+  --weather-cloudy: #8e9aaf;
+  --weather-cloudy-light: #5c677d;
+  --weather-cloudy-dark: #cbc0d3;
+
+  --weather-snowy: #caf0f8;
+  --weather-snowy-light: #90e0ef;
+  --weather-snowy-dark: #f0f9ff;
+
+  --weather-stormy: #4a4e69;
+  --weather-stormy-light: #22223b;
+  --weather-stormy-dark: #9a8c98;
+
+  /* Glassmorphism */
+  --glass-background: rgba(0, 0, 0, 0.3);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-blur: 12px;
+}
+
+/* Theme Pastel - Light Mode */
+.light.theme-pastel {
+  /* Base colors */
+  --background: #f8f9fa;
+  --foreground: #495057;
+
+  /* Card colors */
+  --card: #ffffff;
+  --card-foreground: #495057;
+  --card-hover: #f1f3f5;
+
+  /* Primary colors */
+  --primary: #74c0fc;
+  --primary-foreground: #212529;
+  --primary-light: #a5d8ff;
+  --primary-dark: #4dabf7;
+  --primary-rgb: 116, 192, 252;
+
+  /* Secondary colors */
+  --secondary: #ffa8a8;
+  --secondary-foreground: #212529;
+  --secondary-light: #ffc9c9;
+  --secondary-dark: #ff8787;
+  --secondary-rgb: 255, 168, 168;
+
+  /* UI colors */
+  --muted: #f1f3f5;
+  --muted-foreground: #868e96;
+  --accent: #c5f6fa;
+  --accent-foreground: #212529;
+  --destructive: #ff6b6b;
+  --destructive-foreground: #ffffff;
+  --destructive-light: #ffe3e3;
+
+  /* Border and input colors */
+  --border: #dee2e6;
+  --input: #dee2e6;
+  --ring: #74c0fc;
+
+  /* Weather-specific colors */
+  --weather-sunny: #ffd43b;
+  --weather-sunny-light: #ffe066;
+  --weather-sunny-dark: #fcc419;
+
+  --weather-rainy: #74c0fc;
+  --weather-rainy-light: #a5d8ff;
+  --weather-rainy-dark: #4dabf7;
+
+  --weather-cloudy: #adb5bd;
+  --weather-cloudy-light: #ced4da;
+  --weather-cloudy-dark: #868e96;
+
+  --weather-snowy: #e9ecef;
+  --weather-snowy-light: #f8f9fa;
+  --weather-snowy-dark: #dee2e6;
+
+  --weather-stormy: #495057;
+  --weather-stormy-light: #868e96;
+  --weather-stormy-dark: #343a40;
+
+  /* Glassmorphism */
+  --glass-background: rgba(255, 255, 255, 0.2);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-blur: 8px;
+}
+
+/* Theme Pastel - Dark Mode */
+.dark.theme-pastel {
+  /* Base colors */
+  --background: #212529;
+  --foreground: #f8f9fa;
+
+  /* Card colors */
+  --card: #343a40;
+  --card-foreground: #f8f9fa;
+  --card-hover: #495057;
+
+  /* Primary colors */
+  --primary: #74c0fc;
+  --primary-foreground: #212529;
+  --primary-light: #4dabf7;
+  --primary-dark: #a5d8ff;
+  --primary-rgb: 116, 192, 252;
+
+  /* Secondary colors */
+  --secondary: #ffa8a8;
+  --secondary-foreground: #212529;
+  --secondary-light: #ff8787;
+  --secondary-dark: #ffc9c9;
+  --secondary-rgb: 255, 168, 168;
+
+  /* UI colors */
+  --muted: #343a40;
+  --muted-foreground: #adb5bd;
+  --accent: #15aabf;
+  --accent-foreground: #f8f9fa;
+  --destructive: #ff6b6b;
+  --destructive-foreground: #ffffff;
+  --destructive-light: #c92a2a;
+
+  /* Border and input colors */
+  --border: #495057;
+  --input: #495057;
+  --ring: #74c0fc;
+
+  /* Weather-specific colors */
+  --weather-sunny: #ffd43b;
+  --weather-sunny-light: #fcc419;
+  --weather-sunny-dark: #ffe066;
+
+  --weather-rainy: #74c0fc;
+  --weather-rainy-light: #4dabf7;
+  --weather-rainy-dark: #a5d8ff;
+
+  --weather-cloudy: #adb5bd;
+  --weather-cloudy-light: #868e96;
+  --weather-cloudy-dark: #ced4da;
+
+  --weather-snowy: #e9ecef;
+  --weather-snowy-light: #dee2e6;
+  --weather-snowy-dark: #f8f9fa;
+
+  --weather-stormy: #495057;
+  --weather-stormy-light: #343a40;
+  --weather-stormy-dark: #868e96;
+
+  /* Glassmorphism */
+  --glass-background: rgba(0, 0, 0, 0.25);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-blur: 8px;
+}
+
+/* Accessibility - High Contrast Mode */
+.contrast-high {
+  --primary: #0000ff;
+  --primary-foreground: #ffffff;
+  --secondary: #ff0000;
+  --secondary-foreground: #ffffff;
+  --destructive: #ff0000;
+  --destructive-foreground: #ffffff;
+  --ring: #0000ff;
+  --border: #000000;
+  --card: #ffffff;
+  --card-foreground: #000000;
+}
+
+.dark.contrast-high {
+  --primary: #00ffff;
+  --primary-foreground: #000000;
+  --secondary: #ffff00;
+  --secondary-foreground: #000000;
+  --destructive: #ff0000;
+  --destructive-foreground: #ffffff;
+  --ring: #00ffff;
+  --border: #ffffff;
+  --card: #000000;
+  --card-foreground: #ffffff;
+}
+
+/* Reduced Motion */
+.motion-reduced * {
+  animation-duration: 0.001ms !important;
+  transition-duration: 0.001ms !important;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Weather-specific gradients */
+.bg-sunny {
+  @apply bg-gradient-to-br from-amber-400 via-orange-400 to-orange-500;
+  box-shadow: 0 10px 15px -3px rgba(251, 146, 60, 0.3), 0 4px 6px -4px rgba(251, 146, 60, 0.3);
+}
+
+.bg-cloudy {
+  @apply bg-gradient-to-br from-slate-300 via-slate-400 to-slate-500;
+  box-shadow: 0 10px 15px -3px rgba(148, 163, 184, 0.3), 0 4px 6px -4px rgba(148, 163, 184, 0.3);
+}
+
+.bg-rainy {
+  @apply bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600;
+  box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3), 0 4px 6px -4px rgba(59, 130, 246, 0.3);
+}
+
+.bg-snowy {
+  @apply bg-gradient-to-br from-blue-50 via-blue-100 to-blue-200;
+  box-shadow: 0 10px 15px -3px rgba(219, 234, 254, 0.3), 0 4px 6px -4px rgba(219, 234, 254, 0.3);
+}
+
+.bg-stormy {
+  @apply bg-gradient-to-br from-slate-600 via-slate-700 to-slate-800;
+  box-shadow: 0 10px 15px -3px rgba(71, 85, 105, 0.3), 0 4px 6px -4px rgba(71, 85, 105, 0.3);
+}
+
+.bg-misty {
+  @apply bg-gradient-to-br from-slate-200 via-slate-300 to-slate-400;
+  box-shadow: 0 10px 15px -3px rgba(203, 213, 225, 0.3), 0 4px 6px -4px rgba(203, 213, 225, 0.3);
+}
+
+/* Card and UI component styles */
+@layer components {
+  /* Basic card */
+  .card {
+    @apply bg-card rounded-xl border border-border shadow-md transition-all duration-300 hover:shadow-lg;
+  }
+
+  .card-hover {
+    @apply hover:border-primary hover:border-opacity-20 hover:bg-card-hover;
+  }
+
+  /* Glassmorphism effects */
+  .glass {
+    @apply backdrop-blur-md border transition-all duration-300;
+    background: var(--glass-background);
+    border-color: var(--glass-border);
+  }
+
+  .glass-card {
+    @apply glass rounded-xl shadow-md;
+  }
+
+  .glass-panel {
+    @apply glass rounded-lg;
+  }
+
+  .glass-button {
+    @apply glass rounded-lg px-4 py-2 hover:bg-white hover:bg-opacity-20 active:bg-white active:bg-opacity-10 transition-all;
+  }
+
+  /* Theme-specific card styles */
+  .theme-neon-card {
+    @apply shadow-lg;
+    box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.3);
+    border-color: rgba(var(--primary-rgb), 0.3);
+  }
+
+  .theme-pastel-card {
+    @apply shadow-md;
+    border-width: 2px;
+    border-color: rgba(var(--primary-rgb), 0.2);
+  }
+
+  /* Weather-reactive cards */
+  .weather-reactive {
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .weather-reactive.weather-sunny {
+    background: linear-gradient(135deg, rgba(255, 204, 0, 0.1), rgba(255, 149, 0, 0.15));
+    border-color: rgba(255, 149, 0, 0.2);
+  }
+
+  .weather-reactive.weather-rainy {
+    background: linear-gradient(135deg, rgba(144, 224, 239, 0.1), rgba(0, 119, 182, 0.15));
+    border-color: rgba(0, 119, 182, 0.2);
+  }
+
+  .weather-reactive.weather-cloudy {
+    background: linear-gradient(135deg, rgba(209, 213, 219, 0.1), rgba(156, 163, 175, 0.15));
+    border-color: rgba(156, 163, 175, 0.2);
+  }
+
+  .weather-reactive.weather-snowy {
+    background: linear-gradient(135deg, rgba(240, 249, 255, 0.1), rgba(186, 230, 253, 0.15));
+    border-color: rgba(186, 230, 253, 0.2);
+  }
+
+  .weather-reactive.weather-stormy {
+    background: linear-gradient(135deg, rgba(107, 114, 128, 0.1), rgba(55, 65, 81, 0.15));
+    border-color: rgba(55, 65, 81, 0.2);
+  }
+
+  .dark .weather-reactive.weather-sunny {
+    background: linear-gradient(135deg, rgba(255, 149, 0, 0.15), rgba(255, 204, 0, 0.1));
+    border-color: rgba(255, 204, 0, 0.2);
+  }
+
+  .dark .weather-reactive.weather-rainy {
+    background: linear-gradient(135deg, rgba(0, 119, 182, 0.15), rgba(144, 224, 239, 0.1));
+    border-color: rgba(144, 224, 239, 0.2);
+  }
+
+  .dark .weather-reactive.weather-cloudy {
+    background: linear-gradient(135deg, rgba(75, 85, 99, 0.15), rgba(156, 163, 175, 0.1));
+    border-color: rgba(156, 163, 175, 0.2);
+  }
+
+  .dark .weather-reactive.weather-snowy {
+    background: linear-gradient(135deg, rgba(144, 224, 239, 0.15), rgba(240, 249, 255, 0.1));
+    border-color: rgba(240, 249, 255, 0.2);
+  }
+
+  .dark .weather-reactive.weather-stormy {
+    background: linear-gradient(135deg, rgba(34, 34, 59, 0.15), rgba(154, 140, 152, 0.1));
+    border-color: rgba(154, 140, 152, 0.2);
+  }
+
+  /* Weather cards */
+  .weather-card {
+    @apply rounded-xl shadow-lg overflow-hidden transition-all duration-300;
+  }
+
+  .weather-card-sunny {
+    @apply bg-gradient-to-br from-weather-sunny-light via-weather-sunny to-weather-sunny-dark text-white;
+  }
+
+  .weather-card-rainy {
+    @apply bg-gradient-to-br from-weather-rainy-light via-weather-rainy to-weather-rainy-dark text-white;
+  }
+
+  .weather-card-cloudy {
+    @apply bg-gradient-to-br from-weather-cloudy-light via-weather-cloudy to-weather-cloudy-dark text-white;
+  }
+
+  .weather-card-snowy {
+    @apply bg-gradient-to-br from-weather-snowy-light via-weather-snowy to-weather-snowy-dark text-gray-800;
+  }
+
+  .weather-card-stormy {
+    @apply bg-gradient-to-br from-weather-stormy-light via-weather-stormy to-weather-stormy-dark text-white;
+  }
+
+  /* Interactive elements */
+  .interactive-card {
+    @apply transition-all duration-300 cursor-pointer hover:scale-[1.02] active:scale-[0.98];
+  }
+
+  .button-primary {
+    @apply bg-gradient-to-r from-primary to-secondary text-white px-4 py-2 rounded-lg
+           shadow-md hover:shadow-lg transition-all duration-300
+           hover:scale-[1.02] active:scale-[0.98];
+  }
+
+  .button-secondary {
+    @apply bg-muted text-foreground px-4 py-2 rounded-lg
+           shadow-sm hover:shadow transition-all duration-300
+           hover:bg-muted-foreground hover:bg-opacity-10 active:bg-muted-foreground active:bg-opacity-20;
+  }
+
+  /* Input styles */
+  .input-primary {
+    @apply bg-card border border-input rounded-lg px-4 py-2
+           focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50
+           focus:border-primary focus:border-opacity-50
+           transition-all duration-300;
+  }
+}
+
+/* Animation classes */
+.animate-fade-in {
+  animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-scale {
+  animation: scale 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes scale {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulsate 2s ease-in-out infinite;
+}
+
+@keyframes pulsate {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Transitions */
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  transition-duration: 300ms;
+}
+
+/* Typography enhancements */
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+}
+
+.text-shadow-sm {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.dark .text-shadow-sm {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Gradient animations */
+@keyframes gradient-x {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-x {
+  background-size: 200% 100%;
+  animation: gradient-x 2s ease infinite;
+}
