@@ -41,7 +41,7 @@ export function WeatherDashboard() {
           Our dashboard provides current conditions, 5-day forecasts, and detailed weather charts.
         </p>
         <div className="mt-6 inline-flex items-center px-4 py-2 bg-primary/10 text-primary rounded-lg text-sm">
-          <span className="mr-2">💡</span> Try searching for cities like "London", "New York", or "Tokyo"
+          <span className="mr-2">💡</span> Try searching for cities like &quot;London&quot;, &quot;New York&quot;, or &quot;Tokyo&quot;
         </div>
       </div>
     );
@@ -73,8 +73,17 @@ export function WeatherDashboard() {
   const prepareForecasts = () => {
     if (!forecast) return [];
 
+    // Define a type for the daily forecast data
+    interface DailyForecast {
+      day: string;
+      date: string;
+      temps: number[];
+      icons: string[];
+      descriptions: string[];
+    }
+
     // Group forecast data by day
-    const dailyForecasts = {};
+    const dailyForecasts: Record<string, DailyForecast> = {};
 
     forecast.list.forEach(item => {
       const date = new Date(item.dt * 1000);
@@ -98,7 +107,7 @@ export function WeatherDashboard() {
     });
 
     // Convert to array and calculate min/max temps
-    return Object.values(dailyForecasts).map((day: any, index) => ({
+    return Object.values(dailyForecasts).map((day, index) => ({
       day: day.day,
       date: day.date,
       tempMax: Math.round(Math.max(...day.temps)),
@@ -112,16 +121,17 @@ export function WeatherDashboard() {
   };
 
   // Helper function to get most frequent item in array
-  const getMostFrequent = (arr) => {
-    const counts = {};
+  const getMostFrequent = <T extends string | number>(arr: T[]): T => {
+    const counts: Record<string, number> = {};
     let maxItem = arr[0];
     let maxCount = 1;
 
     for (const item of arr) {
-      counts[item] = (counts[item] || 0) + 1;
-      if (counts[item] > maxCount) {
+      const key = String(item);
+      counts[key] = (counts[key] || 0) + 1;
+      if (counts[key] > maxCount) {
         maxItem = item;
-        maxCount = counts[item];
+        maxCount = counts[key];
       }
     }
 

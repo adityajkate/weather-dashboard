@@ -52,7 +52,7 @@ export const useWeatherStore = create<WeatherStore>((set, get) => ({
       set({ isLoading: true, error: null });
       const results = await getCoordinates(query);
       set({ searchResults: results, isLoading: false });
-    } catch (error) {
+    } catch (_error) {
       set({
         error: 'Failed to search locations. Please try again.',
         isLoading: false,
@@ -85,7 +85,7 @@ export const useWeatherStore = create<WeatherStore>((set, get) => ({
         forecast: forecastData,
         isLoading: false
       });
-    } catch (error) {
+    } catch (_error) {
       set({
         error: 'Failed to fetch weather data. Please try again.',
         isLoading: false

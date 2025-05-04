@@ -3,7 +3,7 @@ import { persist } from 'zustand/middleware';
 
 export type ThemeMode = 'light' | 'dark' | 'system';
 export type ThemeStyle = 'default' | 'neon' | 'pastel';
-export type MotionPreference = 'full' | 'reduced';
+export type MotionPreference = 'full' | 'reduced' | 'system';
 export type ContrastMode = 'normal' | 'high';
 
 interface ThemeState {

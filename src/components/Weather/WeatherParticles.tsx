@@ -3,18 +3,11 @@
 import { useCallback, useMemo, memo } from "react";
 import { useThemeValue } from "@/components/ThemeProvider";
 import dynamic from "next/dynamic";
+import { loadSlim } from "tsparticles-slim";
+import { Engine } from "tsparticles-engine";
 
 // Dynamically import tsparticles to avoid SSR issues
 const Particles = dynamic(() => import("react-tsparticles").then((mod) => mod.Particles), {
-  ssr: false,
-  loading: () => null,
-});
-
-// Import tsparticles engine separately
-const loadSlimModule = dynamic(() =>
-  import("tsparticles-slim").then((mod) => {
-    return { loadSlim: mod.loadSlim };
-  }), {
   ssr: false,
   loading: () => null,
 });
@@ -40,239 +33,137 @@ function WeatherParticlesComponent({
   );
 
   // Initialize the tsparticles engine
-  const particlesInit = useCallback(async (engine: any) => {
+  const particlesInit = useCallback(async (engine: Engine) => {
     try {
-      if (loadSlimModule && loadSlimModule.loadSlim) {
-        await loadSlimModule.loadSlim(engine);
-      }
+      await loadSlim(engine);
     } catch (error) {
       console.error("Failed to initialize particles:", error);
     }
   }, []);
 
-  // Skip particles if reduced motion is enabled or if we're in SSR
+  // Skip rendering if reduced motion is enabled or if we're in SSR
   if (isReducedMotion || typeof window === 'undefined') {
     return null;
   }
 
-  // Get particle count based on intensity
-  const getParticleCount = () => {
-    switch (intensity) {
-      case "low": return 20;
-      case "medium": return 30;
-      case "high": return 40;
-      default: return 30;
-    }
-  };
+  // Memoize particle options to avoid recalculation on each render
+  const particleOptions = useMemo(() => {
+    // Get particle count based on intensity
+    const particleCount = (() => {
+      switch (intensity) {
+        case "low": return 20;
+        case "medium": return 30;
+        case "high": return 40;
+        default: return 30;
+      }
+    })();
 
-  // Memoize particle configuration
-  const particlesOptions = useMemo(() => {
-    const baseConfig = {
-      fpsLimit: 60,
+    const baseOptions = {
+      background: {
+        color: {
+          value: "transparent",
+        },
+      },
+      fullScreen: false,
       particles: {
         number: {
-          value: getParticleCount(),
-          density: {
-            enable: true,
-            value_area: 800
-          }
-        },
-        color: {
-          value: "#ffffff"
-        },
-        opacity: {
-          value: 0.5,
-          random: true,
-          anim: {
-            enable: true,
-            speed: 1,
-            opacity_min: 0.1,
-            sync: false
-          }
-        },
-        size: {
-          value: 3,
-          random: true,
-          anim: {
-            enable: false,
-            speed: 40,
-            size_min: 0.1,
-            sync: false
-          }
+          value: particleCount,
         },
         move: {
           enable: true,
-          speed: 2,
-          direction: "none",
-          random: true,
-          straight: false,
-          out_mode: "out",
-          bounce: false,
-        }
+          speed: 1,
+        },
+        opacity: {
+          value: 0.5,
+        },
+        size: {
+          value: 3,
+        },
       },
-      interactivity: {
-        detect_on: "canvas",
-        events: {
-          onhover: {
-            enable: false,
-          },
-          onclick: {
-            enable: false,
-          },
-          resize: true
-        }
-      },
-      retina_detect: true,
-      background: {
-        color: {
-          value: "transparent"
-        }
-      }
     };
 
-    // Customize based on weather type
     switch (weatherType) {
       case "sunny":
         return {
-          ...baseConfig,
+          ...baseOptions,
           particles: {
-            ...baseConfig.particles,
+            ...baseOptions.particles,
             color: {
-              value: isDark ? "#ffcc00" : "#ff9500"
-            },
-            shape: {
-              type: "circle",
-            },
-            size: {
-              value: 2,
-              random: true,
-            },
-            opacity: {
-              value: 0.6,
-              random: true,
+              value: isDark ? "#ffcc00" : "#ff9500",
             },
             move: {
-              ...baseConfig.particles.move,
-              speed: 1,
-              direction: "top",
-            }
-          }
+              ...baseOptions.particles.move,
+              direction: "top" as const,
+            },
+          },
         };
 
       case "rainy":
         return {
-          ...baseConfig,
+          ...baseOptions,
           particles: {
-            ...baseConfig.particles,
+            ...baseOptions.particles,
             color: {
-              value: isDark ? "#90e0ef" : "#0077b6"
-            },
-            shape: {
-              type: "line",
-            },
-            size: {
-              value: 8,
-              random: false,
-            },
-            opacity: {
-              value: 0.5,
-              random: false,
+              value: isDark ? "#90e0ef" : "#0077b6",
             },
             move: {
-              ...baseConfig.particles.move,
+              ...baseOptions.particles.move,
+              direction: "bottom" as const,
               speed: 8,
-              direction: "bottom",
               straight: true,
-            }
-          }
+            },
+          },
         };
 
       case "snowy":
         return {
-          ...baseConfig,
+          ...baseOptions,
           particles: {
-            ...baseConfig.particles,
+            ...baseOptions.particles,
             color: {
-              value: "#ffffff"
-            },
-            shape: {
-              type: "circle",
-            },
-            size: {
-              value: 3,
-              random: true,
-            },
-            opacity: {
-              value: 0.8,
-              random: true,
+              value: "#ffffff",
             },
             move: {
-              ...baseConfig.particles.move,
+              ...baseOptions.particles.move,
+              direction: "bottom" as const,
               speed: 1.5,
-              direction: "bottom",
-              straight: false,
-            }
-          }
+            },
+          },
         };
 
       case "stormy":
         return {
-          ...baseConfig,
+          ...baseOptions,
           particles: {
-            ...baseConfig.particles,
+            ...baseOptions.particles,
             color: {
-              value: ["#9a8c98", "#4a4e69", "#22223b"]
-            },
-            shape: {
-              type: "circle",
-            },
-            size: {
-              value: 4,
-              random: true,
-            },
-            opacity: {
-              value: 0.7,
-              random: true,
+              value: ["#9a8c98", "#4a4e69", "#22223b"],
             },
             move: {
-              ...baseConfig.particles.move,
+              ...baseOptions.particles.move,
+              direction: "bottomLeft" as const,
               speed: 5,
-              direction: "bottom-left",
-              straight: false,
-            }
-          }
+            },
+          },
         };
 
       case "cloudy":
         return {
-          ...baseConfig,
+          ...baseOptions,
           particles: {
-            ...baseConfig.particles,
+            ...baseOptions.particles,
             color: {
-              value: isDark ? "#9CA3AF" : "#D1D5DB"
-            },
-            shape: {
-              type: "circle",
-            },
-            size: {
-              value: 6,
-              random: true,
-            },
-            opacity: {
-              value: 0.3,
-              random: true,
+              value: isDark ? "#9CA3AF" : "#D1D5DB",
             },
             move: {
-              ...baseConfig.particles.move,
-              speed: 1,
-              direction: "right",
-              straight: false,
-            }
-          }
+              ...baseOptions.particles.move,
+              direction: "right" as const,
+            },
+          },
         };
 
       default:
-        return baseConfig;
+        return baseOptions;
     }
   }, [weatherType, intensity, isDark]);
 
@@ -280,7 +171,7 @@ function WeatherParticlesComponent({
     <Particles
       id={particleKey}
       init={particlesInit}
-      options={particlesOptions}
+      options={particleOptions}
       className="absolute inset-0 -z-10"
       style={{
         width: "100%",

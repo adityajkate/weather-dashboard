@@ -6,7 +6,6 @@ export const formatTemperature = (temp: number, units: 'metric' | 'imperial'): s
 
 // Format wind speed based on units
 export const formatWindSpeed = (speed: number, units: 'metric' | 'imperial'): string => {
-  const value = units === 'metric' ? speed : speed;
   const unit = units === 'metric' ? 'm/s' : 'mph';
   return `${speed.toFixed(1)} ${unit}`;
 };
@@ -55,10 +54,16 @@ export const getWeatherBackgroundClass = (weatherId: number): string => {
   return '';
 };
 
+// Define a type for forecast items
+interface ForecastItem {
+  dt: number;
+  [key: string]: unknown;
+}
+
 // Group forecast data by day
-export const groupForecastByDay = (forecastList: any[]): any[] => {
-  const grouped: Record<string, any[]> = {};
-  
+export const groupForecastByDay = (forecastList: ForecastItem[]): ForecastItem[][] => {
+  const grouped: Record<string, ForecastItem[]> = {};
+
   forecastList.forEach(item => {
     const date = new Date(item.dt * 1000).toLocaleDateString('en-US');
     if (!grouped[date]) {
@@ -66,6 +71,6 @@ export const groupForecastByDay = (forecastList: any[]): any[] => {
     }
     grouped[date].push(item);
   });
-  
+
   return Object.values(grouped);
 };
